@@ -20,7 +20,7 @@
             <div class="d-flex flex-column mt-md-2 mt-0 mx-md-5 mx-1">
             <a href=""><img src="./assets/logo-website.png" alt="" class="logo m-5 position-absolute"></a>
 
-            @error('email')
+            <!-- @error('email')
                 <div class="row">
                     <div class="col-12 mt-3">
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -29,9 +29,10 @@
                         </div>
                     </div>
                 </div>
-            @enderror
+            @enderror -->
 
-            @error('password')
+            @if (count($errors) > 0)
+            @foreach ($errors->all() as $message)
                 <div class="row">
                     <div class="col-12 mt-3">
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -40,7 +41,10 @@
                         </div>
                     </div>
                 </div>
-            @enderror
+            @endforeach    
+            @endif
+
+
 
                 <div class="title">HERE TO MAKE<br><span class="bold"><i>YOUR LIFE EASIER.</i></b></span></div>
                 <div class="slogan mb-3">Welcome back. Please enter your email and password to continue.</div>
@@ -54,6 +58,13 @@
                         <div class="label-off mt-4">Password</div>
                         <input type="password" name="password" id="password" class="border-success" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
                         
+                        <div class="block mt-4">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="form-checkbox" name="remember">
+                                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                            </label>
+                        </div>
+
                         <div class="mt-1 w-100 text-end">
                             <a href="{{ route('password.request') }}" class="forgot">Forgot Password?</a>
                         </div>
